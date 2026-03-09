@@ -1,0 +1,164 @@
+{
+  "$schema": "https://skills.anthropic.com/schema/v1",
+  "name": "ai-context-engineering-for-frontend",
+  "version": "1.0.0",
+  "description": "AI-driven context engineering skills for Vue 3 / React 18 projects",
+  "skills": [
+    {
+      "name": "component-gen",
+      "description": "Generate production-ready SPA component (React or Vue) with all 4 async states",
+      "path": ".claude/skills/component-gen/SKILL.md",
+      "tags": ["react", "vue", "component", "generation"]
+    },
+    {
+      "name": "component-gen-next",
+      "description": "Generate Next.js App Router component with RSC, Suspense, Server Actions",
+      "path": ".claude/skills/component-gen-next/SKILL.md",
+      "tags": ["react", "nextjs", "component", "generation"]
+    },
+    {
+      "name": "api-bind",
+      "description": "OpenAPI / Protobuf spec to typed client + TanStack Query hook",
+      "path": ".claude/skills/api-bind/SKILL.md",
+      "tags": ["react", "vue", "api", "openapi", "protobuf", "grpc", "connect", "tanstack"]
+    },
+    {
+      "name": "api-mocks",
+      "description": "Generate MSW v2 handlers + typed fixtures from OpenAPI spec or /api-bind output",
+      "path": ".claude/skills/api-mocks/SKILL.md",
+      "tags": ["msw", "mocking", "api", "testing", "fixtures"]
+    },
+    {
+      "name": "component-tests",
+      "description": "Vitest + Testing Library tests + a11y audit",
+      "path": ".claude/skills/component-tests/SKILL.md",
+      "tags": ["react", "vue", "testing", "vitest", "a11y"]
+    },
+    {
+      "name": "e2e-tests",
+      "description": "Playwright E2E tests for critical user journeys",
+      "path": ".claude/skills/e2e-tests/SKILL.md",
+      "tags": ["testing", "playwright", "e2e"]
+    },
+    {
+      "name": "fe-repo-scout",
+      "description": "Deep analysis of existing frontend repository",
+      "path": ".claude/skills/fe-repo-scout/SKILL.md",
+      "tags": ["analysis", "audit", "frontend"]
+    },
+    {
+      "name": "be-repo-scout",
+      "description": "Excavate API contracts from backend repository",
+      "path": ".claude/skills/be-repo-scout/SKILL.md",
+      "tags": ["analysis", "backend", "api"]
+    },
+    {
+      "name": "frontend-code-review",
+      "description": "Review PR/diff for security, architecture, anti-patterns",
+      "path": ".claude/skills/frontend-code-review/SKILL.md",
+      "tags": ["review", "security", "architecture"]
+    },
+    {
+      "name": "pr",
+      "description": "Create PR with conventional commit title",
+      "path": ".claude/skills/pr/SKILL.md",
+      "tags": ["git", "pr"]
+    },
+    {
+      "name": "setup-configs",
+      "description": "Generate tsconfig, vite.config, biome.json",
+      "path": ".claude/skills/setup-configs/SKILL.md",
+      "tags": ["config", "vite", "typescript"]
+    },
+    {
+      "name": "refactor",
+      "description": "Code transforms: class-to-hooks, options-to-composition, cjs-to-esm, tanstack-v4-to-v5",
+      "path": ".claude/skills/refactor/SKILL.md",
+      "tags": ["react", "vue", "refactor", "migration"]
+    },
+    {
+      "name": "web-vitals",
+      "description": "Core Web Vitals + performance budget audit",
+      "path": ".claude/skills/web-vitals/SKILL.md",
+      "tags": ["performance", "web-vitals", "audit"]
+    },
+    {
+      "name": "browser-check",
+      "description": "AI self-verification of running UI via agent-browser",
+      "path": ".claude/skills/browser-check/SKILL.md",
+      "tags": ["browser", "visual", "verification"]
+    },
+    {
+      "name": "react-doctor",
+      "description": "React health check - 0-100 score + diagnostics",
+      "path": ".claude/skills/react-doctor/SKILL.md",
+      "tags": ["react", "health", "audit"]
+    },
+    {
+      "name": "vue-doctor",
+      "description": "Vue 3 health check - 0-100 score via Oxlint + eslint-plugin-vue + vue-tsc",
+      "path": ".claude/skills/vue-doctor/SKILL.md",
+      "tags": ["vue", "health", "audit"]
+    },
+    {
+      "name": "ui-tweak",
+      "description": "Process visual annotations to targeted code fixes",
+      "path": ".claude/skills/ui-tweak/SKILL.md",
+      "tags": ["react", "visual", "fix"]
+    },
+    {
+      "name": "spec-audit",
+      "description": "Deep QA audit of UI/UX specification",
+      "path": ".claude/skills/spec-audit/SKILL.md",
+      "tags": ["audit", "specification", "qa"]
+    },
+    {
+      "name": "init-project",
+      "description": "Generate CLAUDE.md for your project",
+      "path": ".claude/skills/init-project/SKILL.md",
+      "tags": ["setup", "init"]
+    },
+    {
+      "name": "init-agent",
+      "description": "Generate frontend_agent.md for AI onboarding",
+      "path": ".claude/skills/init-agent/SKILL.md",
+      "tags": ["setup", "agent"]
+    },
+    {
+      "name": "init-skill",
+      "description": "Create or improve a skill interactively",
+      "path": ".claude/skills/init-skill/SKILL.md",
+      "tags": ["setup", "skill"]
+    },
+    {
+      "name": "fix-markdown",
+      "description": "Fix all markdownlint errors in .md files",
+      "path": ".claude/skills/fix-markdown/SKILL.md",
+      "tags": ["markdown", "lint"]
+    },
+    {
+      "name": "skill-audit",
+      "description": "Audit SKILL.md for bloat and harmful patterns",
+      "path": ".claude/skills/skill-audit/SKILL.md",
+      "tags": ["audit", "skill"]
+    },
+    {
+      "name": "update-ai-setup",
+      "description": "Sync docs/ai-setup.md Registry",
+      "path": ".claude/skills/update-ai-setup/SKILL.md",
+      "tags": ["docs", "sync"]
+    },
+    {
+      "name": "agents-checker",
+      "description": "Verify .claude/agents/ structural integrity",
+      "path": ".claude/skills/agents-checker/SKILL.md",
+      "tags": ["audit", "agents"]
+    },
+    {
+      "name": "curate-lessons",
+      "description": "Deduplicate + graduate .ai-lessons/ into context files",
+      "path": ".claude/skills/curate-lessons/SKILL.md",
+      "tags": ["lessons", "maintenance"]
+    }
+  ]
+}

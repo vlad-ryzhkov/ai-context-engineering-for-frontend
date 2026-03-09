@@ -1,0 +1,9 @@
+---
+description: OpenAPI / Protobuf spec to typed client + TanStack Query hook
+globs:
+alwaysApply: false
+---
+
+## Instructions
+
+Read and follow `.claude/skills/api-bind/SKILL.md`.

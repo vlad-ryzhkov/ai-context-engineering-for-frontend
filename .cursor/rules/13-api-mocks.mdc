@@ -1,0 +1,9 @@
+---
+description: MSW v2 handlers + typed fixtures from OpenAPI spec or /api-bind output
+globs:
+alwaysApply: false
+---
+
+## Instructions
+
+Read and follow `.claude/skills/api-mocks/SKILL.md`.

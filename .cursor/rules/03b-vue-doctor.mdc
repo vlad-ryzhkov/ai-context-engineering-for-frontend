@@ -1,0 +1,26 @@
+---
+description: Vue Doctor health check skill wrapper for Cursor (Vue-only)
+globs: ["src/**/*.vue", "src/**/*.ts"]
+---
+
+# Vue Doctor Health Check (Vue-only)
+
+When asked to run Vue Doctor, Vue health check, or Vue code analysis, follow the instructions in:
+`.claude/skills/vue-doctor/SKILL.md`
+
+## Quick Reference
+
+**Usage:** Run on any Vue 3 project to get a 0-100 health score.
+- `full` — full scan (default)
+- `diff [base]` — diff-only scan against base branch
+- `fix` — auto-fix safe issues (oxlint + eslint only; vue-tsc has no fix)
+
+**Vue-only:** Automatically skips React-only projects.
+
+**3-tool pipeline:** Oxlint + eslint-plugin-vue + vue-tsc (missing tools are skipped, not blockers).
+
+**BANNED:**
+- Running on React-only projects
+- Fabricating diagnostics
+
+For full protocol: read `.claude/skills/vue-doctor/SKILL.md`

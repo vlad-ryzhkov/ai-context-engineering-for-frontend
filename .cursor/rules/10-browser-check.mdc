@@ -1,0 +1,9 @@
+---
+description: AI self-verification of running UI via agent-browser CLI
+globs:
+alwaysApply: false
+---
+
+## Instructions
+
+Read and follow `.claude/skills/browser-check/SKILL.md`.

@@ -1,0 +1,27 @@
+---
+description: Process Agentation visual annotations into targeted code fixes (React-favored)
+globs: ["src/**/*.tsx", "src/**/*.vue"]
+---
+
+# UI Tweak — Visual Annotation Fixes
+
+When asked to process visual annotations, fix UI from annotations, or tweak UI elements, follow the instructions in:
+`.claude/skills/ui-tweak/SKILL.md`
+
+## Quick Reference
+
+**Usage:** Process Agentation annotations → locate source → fix code → resolve.
+- `single` — process all pending annotations (default)
+- `watch` — blocking loop, process as they arrive
+- `session <id>` — specific session only
+
+**React-favored:** Full component tree detection for React. Vue gets DOM selectors and CSS only.
+
+**Requires:** Agentation npm package + MCP server running.
+Setup: `.claude/skills/ui-tweak/references/agentation-setup.md`
+
+**BANNED:**
+- Refactoring beyond what the annotation requests
+- Fabricating selectors or component names
+
+For full protocol: read `.claude/skills/ui-tweak/SKILL.md`

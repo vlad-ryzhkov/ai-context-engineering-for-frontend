@@ -1,0 +1,9 @@
+---
+description: Core Web Vitals audit - LCP, CLS, INP budgets + performance analysis
+globs:
+alwaysApply: false
+---
+
+## Instructions
+
+Read and follow `.claude/skills/web-vitals/SKILL.md`.

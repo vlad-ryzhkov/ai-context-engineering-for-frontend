@@ -1,0 +1,9 @@
+---
+description: Explore an existing frontend repository - map stack, architecture, conventions, anti-patterns
+globs:
+alwaysApply: false
+---
+
+## Instructions
+
+Read and follow `.claude/skills/fe-repo-scout/SKILL.md`.

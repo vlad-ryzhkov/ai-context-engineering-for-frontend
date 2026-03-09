@@ -1,0 +1,25 @@
+---
+description: Next.js App Router component generation skill wrapper for Cursor
+globs: ["src/**/*.tsx", "app/**/*.tsx"]
+---
+
+# Next.js App Router Component Generator
+
+When asked to generate a Next.js component, follow the instructions in:
+`.claude/skills/component-gen-next/SKILL.md`
+
+## Quick Reference
+
+**Usage:** Specify component name + description. Framework is always Next.js App Router.
+- RSC by default (no directive)
+- `'use client'` only for interactive islands
+
+**Required (`--type feature`):** Suspense skeleton + error boundary + empty check + async await.
+
+**BANNED:**
+- `: any` in TypeScript
+- `useQuery` in Server Components (use `await`)
+- `next/router` (use `next/navigation`)
+- `export const revalidate` (use `'use cache'`)
+
+For full protocol: read `.claude/skills/component-gen-next/SKILL.md`

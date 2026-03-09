@@ -1,0 +1,20 @@
+{
+  "threshold": 60,
+  "ignore": [
+    "node_modules",
+    "dist",
+    "build",
+    ".next",
+    "coverage",
+    "**/*.test.*",
+    "**/*.spec.*"
+  ],
+  "rules": {
+    "security": "error",
+    "state-effects": "error",
+    "dead-code": "warn",
+    "bundle-size": "warn",
+    "performance": "warn",
+    "a11y": "warn"
+  }
+}

@@ -1,0 +1,24 @@
+---
+description: React Doctor health check skill wrapper for Cursor (React-only)
+globs: ["src/**/*.tsx", "src/**/*.jsx"]
+---
+
+# React Doctor Health Check (React-only)
+
+When asked to run React Doctor, health check, or dead code analysis, follow the instructions in:
+`.claude/skills/react-doctor/SKILL.md`
+
+## Quick Reference
+
+**Usage:** Run on any React project to get a 0-100 health score.
+- `full` — full scan (default)
+- `diff [base]` — diff-only scan against base branch
+- `fix` — auto-fix safe issues
+
+**React-only:** Automatically skips Vue projects.
+
+**BANNED:**
+- Running on Vue-only projects
+- Fabricating diagnostics
+
+For full protocol: read `.claude/skills/react-doctor/SKILL.md`

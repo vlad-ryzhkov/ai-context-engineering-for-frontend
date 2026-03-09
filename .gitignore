@@ -1,0 +1,138 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+.pnp.cjs
+.yarn/install-state.gz
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/patches
+bower_components/
+
+# Build output
+dist/
+build/
+out/
+.next/
+.nuxt/
+.output/
+.vite/
+.turbo/
+*.tsbuildinfo
+storybook-static/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+.env.development
+.env.production
+.env.staging
+
+# Editor
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+ehthumbs.db
+
+# Testing
+coverage/
+playwright-report/
+playwright/.cache/
+test-results/
+.nyc_output/
+
+# Claude Code local settings
+.claude/settings.local.json
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Pre-compact state (session-specific)
+.claude/.pre-compact-state.md
+
+# Cache
+.cache/
+.eslintcache
+.stylelintcache
+*.tscache
+.biome-cache/
+
+# Package manager locks (uncomment one you DON'T use)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+# bun.lockb
+
+# Misc
+*.local
+*.pid
+*.seed
+*.pid.lock
+
+# --- React ---
+# Create React App
+.env.development.local
+.env.test.local
+.env.production.local
+
+# --- Vue ---
+# Vue CLI
+*.local
+# Vite
+*.local
+
+# --- Next.js ---
+.next/
+.vercel/
+
+# --- Nuxt ---
+.nuxt/
+.output/
+.nitro/
+.cache/
+
+# --- Storybook ---
+storybook-static/
+
+# --- Bundler analysis ---
+stats.html
+stats.json
+bundle-report.html
+
+# --- Docker (dev containers) ---
+docker-compose.override.yml
+
+# --- Sentry ---
+.sentryclirc
+
+# Audit reports (session artifacts, not template content)
+audit/
+.claude/skills/skill-audit/audit/skill-audit-report_*.md
+
+# Planning notes (not template content)
+docs/repository-plan.md
+
+# Security (broad credential match)
+*credentials*
+
+# Backup files
+*.bak
+
+# Nested macOS metadata
+**/.DS_Store
+
+# Local drafts (never push)
+drafts/

@@ -1,0 +1,9 @@
+---
+description: Excavate API contracts from backend repo - TS interfaces, Zod schemas, error maps
+globs:
+alwaysApply: false
+---
+
+## Instructions
+
+Read and follow `.claude/skills/be-repo-scout/SKILL.md`.

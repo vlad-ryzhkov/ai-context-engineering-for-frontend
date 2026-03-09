@@ -1,0 +1,9 @@
+---
+description: Review PR/diff for security, architecture, anti-patterns
+globs:
+alwaysApply: false
+---
+
+## Instructions
+
+Read and follow `.claude/skills/frontend-code-review/SKILL.md`.

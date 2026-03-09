@@ -1,0 +1,50 @@
+{
+  "mcpServers": {
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp@latest"]
+    },
+    "sequential-thinking": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"]
+    },
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "<REPLACE:GITHUB_TOKEN>"
+      }
+    },
+    "playwright": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-playwright"]
+    },
+    "figma": {
+      "command": "node",
+      "args": ["<REPLACE:FIGMA_MCP_SERVER_PATH>"],
+      "env": {
+        "FIGMA_ACCESS_TOKEN": "<REPLACE:FIGMA_TOKEN>"
+      }
+    },
+    "openapi": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-openapi", "--url", "http://localhost:8080/v3/api-docs"]
+    },
+    "task-master-ai": {
+      "command": "npx",
+      "args": ["-y", "--package", "task-master-ai", "task-master"]
+    },
+    "shadcn": {
+      "command": "npx",
+      "args": ["-y", "shadcn@latest", "mcp"]
+    },
+    "nextjs": {
+      "command": "npx",
+      "args": ["-y", "@vercel/mcp-adapter-next"]
+    },
+    "agentation": {
+      "command": "npx",
+      "args": ["-y", "agentation-mcp", "server"]
+    }
+  }
+}

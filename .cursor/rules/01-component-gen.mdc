@@ -1,0 +1,26 @@
+---
+description: SPA component generation skill wrapper for Cursor (React / Vue)
+globs: ["src/**/*.tsx", "src/**/*.vue"]
+---
+
+# SPA Component Generator (React / Vue)
+
+When asked to generate a React or Vue SPA component, follow the instructions in:
+`.claude/skills/component-gen/SKILL.md`
+
+For Next.js App Router components, use: `.claude/skills/component-gen-next/SKILL.md`
+
+## Quick Reference
+
+**Usage:** Specify framework (`react` or `vue`) + component name + description.
+- React: generates `.tsx` file with TypeScript hooks + TanStack Query
+- Vue: generates `.vue` SFC with `<script setup lang="ts">` + TanStack Query
+
+**Required:** All 4 states — loading / error / empty / success.
+
+**BANNED:**
+- `: any` in TypeScript
+- Missing loading or error state
+- Business logic in JSX/template
+
+For full protocol: read `.claude/skills/component-gen/SKILL.md`

@@ -1,0 +1,19 @@
+---
+description: Code transformation skill wrapper for Cursor (React / Vue)
+globs: ["src/**/*.tsx", "src/**/*.vue", "src/**/*.ts"]
+---
+
+# Code Refactor (React / Vue)
+
+When asked to refactor, migrate, or transform code, follow:
+`.claude/skills/refactor/SKILL.md`
+
+## Quick Reference
+
+**Usage:** `/refactor [react|vue] <transform> [--scope <glob>] [--dry-run]`
+
+**Transforms:** class-to-hooks, options-to-composition, cjs-to-esm, tanstack-v4-to-v5, custom
+
+**BANNED:** Transforming test files, changing public API without BREAKING flag
+
+For full protocol: read `.claude/skills/refactor/SKILL.md`

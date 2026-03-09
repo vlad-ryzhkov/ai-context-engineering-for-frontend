@@ -1,0 +1,104 @@
+name: Claude Frontend Code Review
+
+on:
+  pull_request:
+    types: [opened, ready_for_review, reopened]
+    paths:
+      - "src/**"
+      - "package.json"
+      - "package-lock.json"
+      - "tsconfig*.json"
+      - "vite.config.*"
+      - "biome.json"
+      - "tailwind.config.*"
+  issue_comment:
+    types: [created]
+
+jobs:
+  review:
+    if: >
+      (github.event_name == 'pull_request') ||
+      (github.event_name == 'issue_comment' &&
+       github.event.issue.pull_request &&
+       contains(github.event.comment.body, '@claude'))
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+      issues: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get PR number
+        id: pr
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            echo "number=${{ github.event.pull_request.number }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "number=${{ github.event.issue.number }}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Run Claude Frontend Review
+        id: review
+        uses: anthropics/claude-code-action@v1
+        with:
+          model: claude-sonnet-4-5-20250929
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          direct_prompt: |
+            You are a frontend code reviewer. Review PR #${{ steps.pr.outputs.number }}.
+
+            ## Instructions
+
+            Read `.claude/skills/frontend-code-review/SKILL.md` and follow its protocol.
+
+            Execute in CI mode:
+            - Scan the PR diff for frontend files only (.ts, .tsx, .vue, .js, .jsx, .css)
+            - Check for security vulnerabilities using `references/security-checklist.md`
+            - Check for FSD architecture violations
+            - Check for framework anti-patterns using `.claude/fe-antipatterns/_index.md`
+            - Check for performance and accessibility regressions
+
+            ## Output Format
+
+            Post inline comments on specific lines for CRITICAL and HIGH findings.
+            Each inline comment format:
+            ```
+            **[SEVERITY] Category: Title**
+            Description of the issue.
+            **Recommendation:** How to fix.
+            ```
+
+            Post a summary comment with:
+            - Total findings by severity
+            - Verdict: PASS / PASS WITH WARNINGS / BLOCK
+            - Top 3 issues (if any)
+
+            ## Priority Levels
+
+            - CRITICAL: Security vulnerabilities, secret exposure → must fix
+            - HIGH: Architecture violations, missing error states, a11y blockers → should fix
+            - MEDIUM: Performance concerns, minor anti-patterns → consider fixing
+
+            ## Exclusions
+
+            - Do not comment on formatting or style (Biome handles this)
+            - Do not suggest rewrites of unchanged code
+            - Do not flag linter-covered issues
+            - Do not review non-frontend files
+
+            If no findings: post a single comment "No frontend issues found."
+          allowed_tools: |
+            Read
+            Glob
+            Grep
+            Bash(git diff*)
+            Bash(git log*)
+            Bash(git show*)
+            Bash(gh pr view*)
+            Bash(gh pr diff*)
+            Bash(gh api*)
+            Bash(wc*)
+          timeout_minutes: 10

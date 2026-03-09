@@ -1,0 +1,55 @@
+---
+description: Frontend Context Engineering — project context for Cursor IDE
+alwaysApply: true
+---
+
+# Frontend Context Engineering
+
+ALWAYS prioritize the context defined in `CLAUDE.md` and `.claude/frontend_agent.md`.
+
+## Context
+
+- **Project:** AI Context Engineering Template for Vue 3 / React 18
+- **Role:** Frontend Lead (Orchestrator)
+- **Frameworks:** React 18 + Vue 3 (both supported via framework parameter)
+- **Documentation:** in English
+
+> **Tech Stack, Core Principles, Safety Protocols:** see `CLAUDE.md` at root (SSOT)
+
+## Anti-Patterns (BANNED)
+
+| Problem | What to do instead |
+|---------|--------------------|
+| `: any` or `as any` in TypeScript | Explicit interface or `unknown` |
+| Business logic in JSX/template | Extract to custom hook or composable |
+| `useEffect` without deps (React) | Explicit dependency array |
+| `v-for` without `:key` (Vue) | `:key="item.id"` always |
+| Hardcoded API URLs | `import.meta.env.VITE_API_BASE_URL` |
+| Missing loading/error state | All 4 states: loading / error / empty / success |
+| `div onClick` without role | Use `<button type="button">` |
+
+## Skills (How to Use in Cursor)
+
+To run a skill, add the SKILL.md file to context and describe the task.
+
+| Task | Add to context |
+|------|----------------|
+| Generate component (+ FSD scaffold) | `.claude/skills/component-gen/SKILL.md` |
+| Bind API | `.claude/skills/api-bind/SKILL.md` |
+| Write tests + a11y audit | `.claude/skills/component-tests/SKILL.md` |
+| E2E tests | `.claude/skills/e2e-tests/SKILL.md` |
+| Explore repo | `.claude/skills/fe-repo-scout/SKILL.md` |
+| Init project | `.claude/skills/init-project/SKILL.md` |
+| Explore backend repo | `.claude/skills/be-repo-scout/SKILL.md` |
+| Browser check (verify running UI) | `.claude/skills/browser-check/SKILL.md` |
+| Generate Next.js component | `.claude/skills/component-gen-next/SKILL.md` |
+| Create PR | `.claude/skills/pr/SKILL.md` |
+
+## Workflow
+
+```text
+/component-gen → /api-bind → /component-tests
+```
+
+> Full project context: `CLAUDE.md`
+> Agent and skills: `.claude/frontend_agent.md`

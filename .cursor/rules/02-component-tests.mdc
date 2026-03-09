@@ -1,0 +1,21 @@
+---
+description: Component testing skill wrapper for Cursor
+globs: ["src/**/*.test.tsx", "src/**/*.test.ts", "src/**/*.spec.ts"]
+---
+
+# Component Tests Generator
+
+When asked to write tests for a component, follow:
+`.claude/skills/component-tests/SKILL.md`
+
+## Quick Reference
+
+**Usage:** Specify framework + component file path.
+
+**Required:** Tests for all 4 states (loading / error / empty / success) + interactions.
+
+**Selector priority:** role → label → text → placeholder → testId (last resort)
+
+**BANNED:** `querySelector`, snapshot tests as primary, `sleep`/`setTimeout`
+
+For full protocol: read `.claude/skills/component-tests/SKILL.md`

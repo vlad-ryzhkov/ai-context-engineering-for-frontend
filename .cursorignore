@@ -1,0 +1,32 @@
+# IDE wrappers (Codex format, not needed in Cursor)
+.agents/
+
+# CI/CD
+.github/
+
+# Audit output (reports, not source)
+audit/
+
+# Build artifacts
+dist/
+build/
+out/
+.next/
+.nuxt/
+.vite/
+.turbo/
+storybook-static/
+
+# Dependencies
+node_modules/
+
+# Test output
+coverage/
+playwright-report/
+test-results/
+
+# Logs
+*.log
+
+# OS metadata
+**/.DS_Store

@@ -1,0 +1,9 @@
+---
+description: Playwright E2E tests for critical user journeys
+globs:
+alwaysApply: false
+---
+
+## Instructions
+
+Read and follow `.claude/skills/e2e-tests/SKILL.md`.

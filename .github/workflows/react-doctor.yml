@@ -1,0 +1,60 @@
+name: React Doctor Health Check
+
+on:
+  pull_request:
+    paths: ["src/**", "package.json"]
+  push:
+    branches-ignore: [main, master]
+    paths: ["src/**"]
+
+permissions:
+  contents: read
+
+jobs:
+  react-doctor:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Detect framework
+        id: detect
+        run: |
+          if grep -q '"react"' package.json 2>/dev/null; then
+            echo "is_react=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "is_react=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::React not detected in package.json — skipping React Doctor"
+          fi
+
+      - name: Setup Node.js
+        if: steps.detect.outputs.is_react == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Run React Doctor (full scan)
+        if: steps.detect.outputs.is_react == 'true'
+        run: npx react-doctor@latest . --verbose
+
+      - name: Run React Doctor (diff mode, PR only)
+        if: steps.detect.outputs.is_react == 'true' && github.event_name == 'pull_request'
+        run: npx react-doctor@latest . --diff origin/${{ github.base_ref }}
+
+      - name: Score gate
+        if: steps.detect.outputs.is_react == 'true'
+        env:
+          THRESHOLD: 60
+        run: |
+          SCORE=$(npx react-doctor@latest . --score 2>/dev/null || echo "")
+          if [ -z "$SCORE" ]; then
+            echo "::warning::Could not extract React Doctor score"
+            exit 0
+          fi
+          echo "React Doctor score: ${SCORE}/100"
+          if [ "$SCORE" -lt "$THRESHOLD" ] 2>/dev/null; then
+            echo "::error::React Doctor score ${SCORE}/100 is below threshold ${THRESHOLD}"
+            exit 1
+          fi

@@ -1,0 +1,23 @@
+# Markdownlint configuration
+default: true
+
+# Allow multiple top-level headings (skill files use H1 inside YAML front matter)
+MD025: false
+
+# Allow inline HTML (used in README details/summary)
+MD033: false
+
+# Line length - disable (code blocks can be long)
+MD013: false
+
+# First line heading - disable (YAML front matter files don't start with heading)
+MD041: false
+
+# Code block language - require language tags
+MD040: true
+
+# Table formatting
+MD056: true
+
+# Table column style - disable (tables use mixed compact/aligned styles across files)
+MD060: false

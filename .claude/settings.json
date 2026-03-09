@@ -1,0 +1,131 @@
+{
+  "permissions": {
+    "allow": [
+      "Read",
+      "Edit",
+      "Write",
+      "Glob",
+      "Grep",
+      "WebFetch",
+      "WebSearch",
+      "Bash",
+      "mcp__sequential-thinking__sequentialthinking"
+    ],
+    "deny": [
+      "Bash(chmod 777 *)",
+      "Bash(sudo *)",
+      "Bash(git reset --hard*)",
+      "Bash(git clean -f*)",
+      "Bash(git clean -fd*)",
+      "Bash(git push --force*)",
+      "Bash(git push -f *)",
+      "Bash(git branch -D *)",
+      "Bash(rm *)",
+      "Bash(rm -r*)",
+      "Bash(unlink *)",
+      "Bash(npm publish*)",
+      "Bash(yarn publish*)",
+      "Bash(pnpm publish*)",
+      "Bash(npm run dev)",
+      "Bash(npm run dev *)",
+      "Bash(yarn dev)",
+      "Bash(pnpm dev)",
+      "Bash(vite)",
+      "Bash(npx vite)"
+    ]
+  },
+  "enabledMcpjsonServers": [
+    "context7",
+    "sequential-thinking",
+    "github",
+    "playwright",
+    "figma",
+    "openapi",
+    "agentation"
+  ],
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/skill-lint.sh",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/fe-lint.sh",
+            "timeout": 15
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/delta-guard.sh",
+            "timeout": 10,
+            "async": true
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/arch-guard.sh",
+            "timeout": 10,
+            "async": true
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/pre-compact.sh",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/subagent-stop.sh",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/session-start.sh",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/user-prompt-submit.sh",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  },
+  "enabledPlugins": {
+    "github@claude-plugins-official": true,
+    "playwright@claude-plugins-official": true,
+    "figma@claude-plugins-official": true
+  },
+  "alwaysThinkingEnabled": true
+}
