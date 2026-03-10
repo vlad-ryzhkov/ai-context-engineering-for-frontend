@@ -1,6 +1,8 @@
-# CLAUDE.md — Frontend Project Template
+# CLAUDE.md — Minimal Frontend Project Template
 
-> **Purpose:** Project wiki for the AI assistant. One file that answers: what framework, what patterns, what commands, what is forbidden.
+> **Minimality Principle** ([research](https://arxiv.org/abs/2602.11988)):
+> Hand-written context outperforms AI-generated (+4% vs −3%). Do NOT add codebase overviews,
+> directory listings, or skills tables — agents discover these on their own.
 
 ---
 
@@ -12,12 +14,6 @@
 ## Purpose
 
 [One-line description of the project.]
-
-## Communication Protocol (STRICT)
-
-- **CLI mode, not chat:** Execute, don't converse.
-- **No preamble:** FORBIDDEN: "Great", "Got it", "Sure", "Let me look".
-- **Tool-First:** Action first, comments only AFTER if analysis is needed.
 
 ## Tech Stack
 
@@ -33,13 +29,6 @@
 | Testing (E2E)  | [Playwright]                  | —                              |
 | API Client     | [HeyAPI / openapi-ts / fetch] | untyped axios                  |
 | Linter         | [Biome / ESLint]              | —                              |
-
-## Project Structure
-
-```text
-src/
-[paste actual directory tree here]
-```
 
 ## Commands
 
@@ -73,17 +62,6 @@ FORBIDDEN: `git reset --hard`, `git clean -fd`, branch deletion, `rm -rf`
 MANDATORY: Read file before editing. Stage specific files, never `git add -A`.
 OVERRIDE: Requires the word **DESTROY**.
 
-## Available Skills
-
-| Command                          | Description                                      |
-|----------------------------------|--------------------------------------------------|
-| `/component-gen [react\|vue]`    | Generate FSD structure + component with all states |
-| `/api-bind [react\|vue]`         | OpenAPI → types + client + hook                  |
-| `/component-tests [react\|vue]`  | Vitest + Testing Library tests + a11y audit      |
-| `/e2e-tests`                     | Playwright E2E tests                             |
-| `/fe-repo-scout`                 | Explore repository                               |
-| `/init-project`                  | Generate this CLAUDE.md                          |
-| `/pr`                            | Create PR with conventional commit               |
 ````
 
 ---

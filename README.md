@@ -46,7 +46,7 @@ Three steps to start getting value:
    /init-project
    ```
 
-   This generates `CLAUDE.md` with project-specific AI instructions.
+   This generates a minimal `CLAUDE.md` draft. **Review and trim it by hand** — research shows hand-written context outperforms AI-generated (+4% vs −3%). See [docs/claudemd-instructions.md](docs/claudemd-instructions.md) for what to keep and what to remove.
 
    > **:warning: CRITICAL STEP — fill in `.claude/conventions/`**
    >
@@ -379,10 +379,20 @@ Each skill accepts specific flags documented in the Skills Reference table above
 This library is a starting point. To make it yours:
 
 1. **Copy `.claude/`** into your project.
-2. **Run `/init-project`** to generate a project-specific `CLAUDE.md`.
+2. **Run `/init-project`** to generate a minimal `CLAUDE.md` draft. Review and trim by hand — see [docs/claudemd-instructions.md](docs/claudemd-instructions.md).
 3. **Edit the generated `CLAUDE.md`** — replace defaults with your actual stack.
 4. **Run skills and review.** Expect some gaps on first try.
 5. **Tweak SKILL.md files.** Skills are plain Markdown. Add team conventions, remove noise.
+
+---
+
+## CLAUDE.md — Keep It Minimal
+
+Research shows that bloated or LLM-generated context files **reduce** agent success rate and increase inference cost by over 20%.
+Keep your `CLAUDE.md` as small as possible: only specific tooling, build/test commands, and banned alternatives.
+Do not add codebase overviews, directory listings, or skills tables — agents discover these on their own.
+
+See [docs/claudemd-instructions.md](docs/claudemd-instructions.md) for the full guidelines.
 
 ---
 

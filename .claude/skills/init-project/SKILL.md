@@ -10,6 +10,13 @@ context: fork
 auto-invoke: false
 ---
 
+> **Minimality Principle** ([research](https://arxiv.org/abs/2602.11988)):
+> LLM-generated context files reduce task success rate (−3%) and increase inference cost (+20%).
+> This skill generates a **minimal draft** — human review and rewrite is mandatory.
+> Include ONLY: tech stack, build/test commands, banned alternatives, specific tooling.
+> Do NOT include: codebase overviews, directory listings, architecture descriptions,
+> skills tables, or anything already present in existing documentation.
+
 ## SYSTEM REQUIREMENTS
 
 Before execution the agent MUST load: `.claude/protocols/gardener.md`
@@ -24,9 +31,9 @@ Before execution the agent MUST load: `.claude/protocols/gardener.md`
 - Output to chat ONLY: blocker messages, confirmation prompts, and the final SKILL COMPLETE block.
 
 <purpose>
-Scans the current project to detect the actual tech stack, then generates a project-specific
-`CLAUDE.md` that overrides the defaults from this template.
-Run once per project, then commit CLAUDE.md to the repo.
+Generate a minimal CLAUDE.md draft based on repository analysis.
+Focus: tech stack, commands, and banned alternatives — nothing more.
+Human review required before committing.
 </purpose>
 
 ## Algorithm
@@ -81,17 +88,27 @@ Fill in detected values. Mark unknown values as TODO for user to fill.
 Include:
 
 - Detected tech stack table (React or Vue column, with BANNED column)
-- Detected architecture + `src/` structure diagram
 - Actual commands from `package.json` scripts
 - Safety protocols section
-- Available skills list
+
+Do NOT include:
+
+- Project Structure / directory tree (agents discover files on their own)
+- Available Skills table (agents discover skills from YAML headers)
+- Codebase overview or architecture description
+- Content already present in README or docs/
+
+Minimality check: Before saving, delete any section that duplicates information already available in the repository.
 
 ### Step 5: Validate
 
 - [ ] No `[placeholder]` or `TODO` left in output (fill or remove)
 - [ ] Tech stack matches actual `package.json` (not guessed)
 - [ ] Commands exist in `package.json` scripts
-- [ ] Structure reflects actual `src/` directory
+- [ ] No codebase overview or directory listing sections
+- [ ] No skills listing
+- [ ] No duplicated content from README/docs
+- [ ] No HTML comments from template
 
 ### Step 6: Write
 
@@ -128,11 +145,23 @@ Each stub format:
 
 Read `references/fe-codegen-templates.md` for convention stub templates if available.
 
+## Anti-Patterns
+
+| Anti-Pattern | Why It Breaks | Fix |
+|---|---|---|
+| Including Project Structure / directory tree | Agents discover files on their own; adds cost | Remove directory listings |
+| Including Available Skills table | Agents discover skills from YAML headers | Do not list skills |
+| Duplicating README/docs content | +20% reasoning tokens | Only include info NOT in repo docs |
+| Hardcoded stack not matching actual project | CLAUDE.md contradicts reality | Scan package.json; verify before writing |
+| `[placeholder]` values left unfilled | Template cruft interpreted as literal values | Replace all; remove if unknown |
+
 ## Quality Gates
 
 - [ ] Stack detected from actual files
 - [ ] Commands match `package.json` scripts
-- [ ] Architecture diagram matches actual `src/`
+- [ ] No codebase overview or directory listings
+- [ ] No skills listing
+- [ ] No duplicated content from README/docs
 - [ ] CLAUDE.md written to project root
 - [ ] `.claude/conventions/` stubs written (6 files)
 
@@ -144,6 +173,6 @@ Read `references/fe-codegen-templates.md` for convention stub templates if avail
 ✅ SKILL COMPLETE: /init-project
 ├─ Artifact: CLAUDE.md
 ├─ Framework: [detected]
-├─ Architecture: [detected]
-└─ Next: /component-gen [react|vue] to verify setup
+├─ Coverage: [X/7 validation checks passed]
+└─ Next: Review CLAUDE.md by hand, then /component-gen [react|vue] to verify setup
 ```
