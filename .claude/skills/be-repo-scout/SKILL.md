@@ -266,53 +266,27 @@ After cataloging all endpoints, group them into 3–8 high-level business domain
 
 **Goal:** Generate TypeScript interfaces for every request/response shape discovered in Phase 3.6.
 
-For each entity / response shape found:
+Use templates from `references/fe-codegen-templates.md` § TypeScript Interfaces. For each entity:
 
-1. Emit a TypeScript `interface` with:
-   - All fields with correct TypeScript types (string, number, boolean, null, Array<T>)
-   - JSDoc `@example` annotation with a realistic example value
-   - Optional fields marked with `?`
-2. Map backend types to TypeScript:
-   - `int32`/`int64` → `number`
-   - `string UUID` → `string` (add JSDoc `@format uuid`)
-   - `timestamp`/`datetime` → `string` (add JSDoc `@format iso8601`)
-   - Enum → TypeScript `type` union string literal
-3. Flag `[TYPE_MISMATCH]` where proto/ORM type differs from handler type (e.g., proto `int32` but code parses as `int64`)
-4. Use code gen templates from `references/fe-codegen-templates.md`
+- Map backend types per template rules (int→number, UUID→string, timestamp→string, enum→union)
+- Flag `[TYPE_MISMATCH]` where proto/ORM type differs from handler type
 
 ### Phase F2: Zod Schema Generation
 
 **Goal:** From Phase 3.2 validation rules, emit ready-to-paste Zod schemas.
 
-For each endpoint with validation rules:
+Use templates from `references/fe-codegen-templates.md` § Zod Schemas. For each endpoint:
 
-1. Emit a `z.object({...})` covering:
-   - Required fields: `z.string()`, `z.number()`, etc.
-   - Optional fields: `.optional()` or `.nullable()`
-   - Length constraints: `.min(N).max(M)`
-   - Regex patterns: `.regex(/pattern/)`
-   - Enum values: `z.enum([...])`
-   - Cross-field rules: `.refine(...)` with descriptive message
-2. Tag `[UNDOCUMENTED]` rules not present in OpenAPI/proto — these are invisible to spec-only generation
-3. Use Zod schema templates from `references/fe-codegen-templates.md`
+- Tag `[UNDOCUMENTED]` rules not present in OpenAPI/proto — invisible to spec-only generation
 
 ### Phase F3: Error Constants Map
 
 **Goal:** From Phase 3.3, emit a TypeScript `const` error map.
 
-1. Emit:
+Use template from `references/fe-codegen-templates.md` § Error Constants. For each error:
 
-   ```typescript
-   export const API_ERRORS = {
-     ERROR_CODE: { httpStatus: 400, message: "Human-readable message" },
-   } as const satisfies Record<string, { httpStatus: number; message: string }>;
-   ```
-
-2. Classify each error for UI treatment:
-   - `field` — show under specific form field
-   - `toast` — show as notification
-   - `screen` — replace current view (401, 403, 404, 500)
-3. Flag missing codes: backend throws it in code, but has no named constant → `[MISSING_CONSTANT]`
+- Classify for UI treatment: `field` (form field), `toast` (notification), `screen` (401/403/404/500)
+- Flag missing codes: backend throws it but no named constant → `[MISSING_CONSTANT]`
 
 ### Phase F4: BFF Opportunity Analysis
 

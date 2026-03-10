@@ -56,12 +56,6 @@ MANDATORY for ALL async components:
 - Empty/no-data state
 - Success/data state
 
-## Safety Protocols
-
-FORBIDDEN: `git reset --hard`, `git clean -fd`, branch deletion, `rm -rf`
-MANDATORY: Read file before editing. Stage specific files, never `git add -A`.
-OVERRIDE: Requires the word **DESTROY**.
-
 ````
 
 ---

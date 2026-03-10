@@ -281,32 +281,6 @@ Grep: "Loop Guard", "Escalation", "3-Strike", or `> **Loop Guard**`.
 - Applicable only if skill involves code testing, compilation, or iterative fixing (api-tests, api-mocks, api-isolated-tests)
 - Recommendation: Add Block C (Loop Guard) from `init-skill/references/skill-template.md`
 
-### Check 16: Cross-Skill Improvement Section (Tier 2)
-
-Pipeline consumer skills (skills that consume structured artifacts produced by another skill,
-e.g., `/api-tests` consuming `test-scenarios.md` from `/api-test-cases`) MUST have a
-`## 💡 {Source} Improvements (Gardener)` section embedded inside the Completion Contract.
-
-- Grep for `Scenario Source Improvements\|Blueprint Source Improvements\|Generator Improvements` in SKILL.md
-- If skill reads `audit/test-scenarios.md` as primary input AND no such section exists → **WARNING** (Tier 2)
-- If skill is a pure auditor of another skill's output AND no such section exists → **WARNING** (Tier 2)
-- OMIT this check for generative skills that produce artifacts without consuming upstream skill output
-
----
-
-### Check 11a: Paired Skill Drift (Legacy — still CRITICAL)
-
-`api-tests/SKILL.md` and `api-tests-java/SKILL.md` are paired skills — intentionally similar. Divergence is allowed only where the language differs (Kotlin vs Java syntax, types, tooling). All behavioral rules (numbered labels `2a`–`2l`, Quality Gates, Workflow, Completion Contract) must be synchronized.
-
-Algorithm:
-
-1. Grep both files for numbered rule labels (`2a.`, `2b.`, ..., `2l.`, `3.`, `4.`, etc.) — build a label list from each file
-2. Labels present in one file but absent in the other → **WARNING** "Rule `{label}` exists in `{fileA}` but not in `{fileB}`"
-3. LLM step: for labels present in both — read both rule texts, compare intent. If meaning has diverged (not a language adaptation, but a different rule) → **WARNING** "Rule `{label}` has diverged meaning between paired skills"
-
-- Severity: **WARNING**
-- Scope: always run when auditing `api-tests` or `api-tests-java`; skip for all other skills
-
 #### 11b: Intra-doc Redundancy
 
 For SKILL.md files > 200 lines — LLM step:
@@ -336,7 +310,7 @@ Output to chat only:
 
 | Severity | What it catches |
 |----------|-----------------|
-| **CRITICAL** | "DO NOT FIX", SKILL.md >500 lines, artifact-generating skills without timestamping, paired skill drift (api-tests / api-tests-java) |
+| **CRITICAL** | "DO NOT FIX", SKILL.md >500 lines, artifact-generating skills without timestamping |
 | **ERROR** | Stale cross-references in qa_agent.md \| Side-effect skill missing `disable-model-invocation: true` (Check 1c) |
 | **WARNING** | Bloated Self-Review (>50 lines), Tech Stack duplication, code >50 lines inline, Anti-Patterns >30 lines, 300–500 lines, SKILL.md >400 lines without Progressive Disclosure, excessive rigid constraints (ALWAYS/NEVER/MUST > 5), missing `allowed-tools` (Check 1a), missing STOP/WARN/INFORM checkpoints in framework skills (Check 1d), **Tier 1 Baseline missing during V2 migration** (SILENT MODE, Self-review checklist, Gardener integration) |
 | **SUGGESTION** | Tier 2–3 features missing (Anti-patterns, Loop Guard), decorative ``` blocks, rarely-used sections inline, intra-doc redundancy |

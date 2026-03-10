@@ -89,7 +89,6 @@ Include:
 
 - Detected tech stack table (React or Vue column, with BANNED column)
 - Actual commands from `package.json` scripts
-- Safety protocols section
 
 Do NOT include:
 
@@ -108,6 +107,7 @@ Minimality check: Before saving, delete any section that duplicates information 
 - [ ] No codebase overview or directory listing sections
 - [ ] No skills listing
 - [ ] No duplicated content from README/docs
+- [ ] No Safety Protocols section (covered by Claude Code system prompt)
 - [ ] No HTML comments from template
 
 ### Step 6: Write

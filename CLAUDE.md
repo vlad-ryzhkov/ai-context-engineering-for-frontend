@@ -2,11 +2,6 @@
 
 AI-driven frontend template for Vue 3 / React 18. Every code-generating skill requires `react` or `vue` as input.
 
-## Communication
-
-- **CLI mode:** Execute, don't converse. Tool first, comments only after output.
-- **FORBIDDEN:** preamble ("Great", "Got it"), announcements ("I'll now read..."), verbose explanations.
-
 ## Tech Stack
 
 | Concern        | React                           | Vue                           | BANNED                           |
@@ -32,22 +27,3 @@ AI-driven frontend template for Vue 3 / React 18. Every code-generating skill re
 | Lint       | `npx biome check .`                                |
 | Test unit  | `npx vitest run`                                   |
 | Test E2E   | `npx playwright test`                              |
-
-## Principles
-
-1. **Zero Hallucination** — only facts from tools, never fabricate file paths or APIs.
-2. **Production Ready** — generated code must be valid TypeScript, no `TODO` stubs left in output.
-
-## Token Economy & Loop Guard
-
-- PAUSE on tasks > 20,000 tokens.
-- **Loop Guard:** FORBIDDEN to repeat the same action more than 3 times without progress.
-- After 3 unsuccessful attempts → Output "LOOP_GUARD_TRIGGERED: [Reason]" and PAUSE.
-
-## Architecture
-
-→ see `.claude/rules/fsd.md` and `.claude/rules/architecture-alternatives.md`.
-
-## Skills
-
-→ see `.claude/frontend_agent.md` § Skills Matrix for full list and routing.

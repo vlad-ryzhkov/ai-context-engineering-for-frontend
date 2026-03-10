@@ -144,43 +144,11 @@ If component description contains any of **streaming**, **realtime**, **SSE**, *
 
 ### 3. Phase 0: Design Thinking [`--design` only]
 
-**Before generating styles**, agent MUST scan project for existing design tokens:
-
-1. Glob `tailwind.config.*` → if found, extract `theme.extend.colors` and `theme.extend.fontFamily`
-2. Glob `src/**/*.css` + `src/**/*.scss` for `--` CSS custom properties → extract palette tokens
-3. Use discovered tokens as base palette. Override only if user explicitly requests a new palette.
-
-Answer all four questions in a short `<!-- design-brief -->` comment block at the top of the primary output file:
-
-```text
-Purpose:         What does this UI do / what problem does it solve?
-Tone:            What emotion should it evoke? (e.g., "confident + minimal", "playful + energetic")
-Constraints:     Brand tokens, palette restrictions, motion budget. (List discovered tokens here)
-Differentiation: What named aesthetic direction? (e.g., brutalist, editorial, retro-futuristic, glassmorphism-lite)
-                 FORBIDDEN to answer "modern and clean" — that is not a direction.
-                 If description contains "modern and clean": MUST pick ONE named direction:
-                 Swiss Typography, Apple-esque Glassmorphism, Scandinavian Flat, Brutalist Editorial,
-                 Retro-Futuristic, Maximalist Chaos, Organic/Natural, Luxury/Refined,
-                 High-Fashion Editorial (serif-heavy), Art Deco / Geometric.
-```
-
-If the description is too vague to answer Differentiation → ask ONE clarifying question.
+Load `references/design-thinking.md` — execute the design brief template (palette scan, Purpose/Tone/Constraints/Differentiation).
 
 ### 4. Motion & Composition Directives [`--design` only]
 
-#### Motion Budget
-
-- ONE primary entrance animation per component — do not animate every element
-- Staggered reveals for list/grid items: `animation-delay` increments (50ms per item, max 5)
-- FORBIDDEN: looping decorative animations unless core UI metaphor — causes battery drain and layout jank
-- Animate only `transform` and `opacity` — `width`/`height`/`margin`/`top`/`left` trigger layout reflow and jank
-- Scroll-reveal: `IntersectionObserver` or CSS `animation-timeline: view()` — JS scroll handlers block main thread
-
-#### Spatial Composition
-
-- Vary spatial rhythm: at least 2 different spacing scales
-- Prefer asymmetry for editorial layouts: CSS grid with unequal column spans (7+5, 8+4)
-- Avoid every section having identical `py-16 px-4` padding — monotonous rhythm kills visual hierarchy
+Load `references/motion-composition.md` — enforce motion budget and spatial composition rules.
 
 ### 5. Banned Patterns
 
